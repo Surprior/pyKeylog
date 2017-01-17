@@ -8,7 +8,7 @@ PORT = 4444
 
 lock = Lock()
 
-# This file contains two similar handlers for handling: 
+# This file contains two similar functions for handling keyboard events: 
 
 # Handler using Thread and Lock
 def kb_handler_thread(c):
