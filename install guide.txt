@@ -1,0 +1,24 @@
+After atempting for a few days, these are the steps that worked for me to get pyHooks working on Windows 10:
+
+Uninstall any other verson of pyHook
+
+Download pyHook_py3k:
+	https://github.com/Answeror/pyhook_py3k
+
+Download and install Microsoft Visual C++ 14.0:
+	http://landinghub.visualstudio.com/visual-cpp-build-tools
+
+Update setuptools:
+	pip install --upgrade setuptools
+
+Download and install swig.exe:
+	http://www.swig.org/download.html
+
+Install pyHook_py3k:
+	cd path-to-extracted-pyhook_py3k-master
+	python3 setup.py build_ext --swig=path-to-swig.exe
+	pip install .
+
+Combine HookManager.py og cpyHook.py in site-packages\pyHook:
+	See: HookManager.py.MODIFIED
+	More or less copied the content of cpyHook.py into HookManager.py at the top, removed the import at the top of HookManager.py and "self." in some places
