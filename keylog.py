@@ -8,6 +8,8 @@ PORT = 4444
 
 lock = Lock()
 
+# This file contains two similar handlers for handling: 
+
 # Handler using Thread and Lock
 def kb_handler_thread(c):
 	lock.acquire()
@@ -23,7 +25,7 @@ def kb_handler(e):
 		pass
 	return True
 
-# Simpler version 
+# Simpler version, using only Lock
 def kb_handler2(e):
 	lock.acquire()
 	print(e.Key)
